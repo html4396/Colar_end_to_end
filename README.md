@@ -38,7 +38,7 @@ bash extract_frames.sh videos/test frames/test -vf fps=25 -s 224x224 %05d.png
 
 a. Download  init weight 
 
-You need to download the pre-trained weight [weight_init](https://pan.baidu.com/s/1rj5RfzZjmFYnAVpjGvAYVw)  to initialize network, and put the model into models.(pwd: czpw)
+You need to download the pre-trained weight [weight_init](https://pan.baidu.com/s/1rj5RfzZjmFYnAVpjGvAYVw)  to initialize network, and Place the model inside the `models` folder.(pwd: czpw)
 
 b. Config
 
