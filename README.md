@@ -34,11 +34,11 @@ bash extract_frames.sh videos/val frames/val -vf fps=25 -s 224x224 %05d.png
 bash extract_frames.sh videos/test frames/test -vf fps=25 -s 224x224 %05d.png
 ```
 
-## Train & Inference
+## Train 
 
 a. Download  init weight 
 
-You need to download the pre-trained weight [weight_init](https://pan.baidu.com/s/1rj5RfzZjmFYnAVpjGvAYVw)  to initialize network, and Place the model inside the `models` folder.(pwd: czpw)
+You need to download the pre-trained weight [weight_init](https://pan.baidu.com/s/1rj5RfzZjmFYnAVpjGvAYVw) (code: czpw) to initialize network, and Place the model inside the `models` folder.
 
 b. Config
 
@@ -51,14 +51,16 @@ c. Train
 ```train
 python main.py --cuda_id 0
 ```
-d. Test
+## Inference
+
+a. You can download pre-trained models here:
+
+- [THUMOS14_best.pth](https://pan.baidu.com/s/1k8P2lUWLN3t6r2JUSSZb9Q) (code: yd9m) trained on THUMOS14  
+- The performance of our model can reach 58.6%(mAP) 
+
+b. Test
 
 ```eval
-python test.py --cuda_id 0 --model '*.pth' 
+python test.py --cuda_id 0 --pth 'THUMOS14_best.pth' 
 ```
-## Pre-trained Models
-
-You can download pretrained models here:
-
-- [THUMOS14_best.pth](https://pan.baidu.com/s/1k8P2lUWLN3t6r2JUSSZb9Q) trained on THUMOS14  (pwd: yd9m)
 
