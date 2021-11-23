@@ -44,7 +44,7 @@ def parse_args():
     parser.add_argument('--dataset_file', type=str, default='./data')
     parser.add_argument('--feature_type', type=str, default='V3')
     parser.add_argument('--command', type=str, default='Thumos')
-    parser.add_argument('--frames_root', default='./data/thumos14/frames_224')
+    parser.add_argument('--frames_root', default='./data/thumos/frames')
     parser.add_argument('--pth', type=str, default='')
     args = parser.parse_args()
     return args
