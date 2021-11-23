@@ -1,6 +1,6 @@
-## I2Sim: Modeling Intra-Segment and Intra-Category Similarity forPractical Online Action Detection
+## Colar: Effective and Efficient Online Action Detection by Consulting Exemplars
 
-This repository is the official implementation of I2Sim. `In this work, we study the temporal action localization under single-background-frame supervision.` 
+This repository is the official implementation of Colar. In this work, we study the online action detection. Current works model historical dependencies and anticipate future to perceive the action evolution within a video segment and improve the detection accuracy. However, the existing paradigm ignores category-level modeling and does not pay sufficient attention to efficiency. Considering a category, its representative frames exhibit various characteristics. Thus, the category-level modeling can provide complementary guidance to the temporal dependencies modeling. In this paper, we develop an effective exemplar-consultation mechanism that first measures the similarity between a frame and exemplary frames, and then aggregates exemplary features based on the similarity weights. This is also an efficient mechanism as both similarity measurement and feature aggregation require limited computations. Based on the exemplar-consultation mechanism, the long-term dependencies can be captured by regarding historical frames as exemplars, and the category-level modeling can be achieved by regarding representative frames from a category as exemplars. Due to the complementarity from the category-level modeling, our method employs a lightweight architecture but achieves new high performance on three benchmarks. In addition, using a spatio-temporal network to tackle video frames, our method spends 9.8 seconds to dispose of a one-minute video and achieves comparable performance.` 
 
 ![Illustrating the architecture of the proposed I2Sim](framework.jpg)
 
@@ -19,44 +19,39 @@ Before running the code, please activate this conda environment.
 
 a. Enter data directory
 
-	cd ${Colar_root}/data/thumos
+	cd data/thumos
 
 b. Download raw annotations and video data
 
 ~~~~
-${Colar_root}/data/thumos/download.sh
+bash download.sh
 ~~~~
 
 c. Extract frames
 
 ```
-cd ${Colar_root}/data/thumos14
-${Colar_root}/data/extract_frames.sh videos/val frames/val -vf fps=25 -s 224x224 %05d.png
-${Colar_root}/data/extract_frames.sh videos/test frames/test -vf fps=25 -s 224x224 %05d.png
+bash extract_frames.sh videos/val frames/val -vf fps=25 -s 224x224 %05d.png
+bash extract_frames.sh videos/test frames/test -vf fps=25 -s 224x224 %05d.png
 ```
 
-## Train
+## Train & Inference
 
-a. Config
+a. Download  init weight 
 
-Modify 'anno path', 'frames path', 'visible cuda' and so on accordingly in the config file like
+You need to download the pre-trained weight [weight_init](https://pan.baidu.com/s/1rj5RfzZjmFYnAVpjGvAYVw)  to initialize network, and put the model into models.(pwd: czpw)
+
+b. Config
+
+Adjust configurations
 
 `./init.py`
 
-b. Train
+c. Train
 
 ```train
 python main.py --cuda_id 0
 ```
-## Test
-
-a. Config
-
-Modify 'weight path' accordingly in the config file like
-
-`./init.py`
-
-b. Test
+d. Test
 
 ```eval
 python test.py --cuda_id 0 --model '*.pth' 
